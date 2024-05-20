@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
         currentDoor = newDoor;
     }
 
-    public void UpdateCollectible(Collectible newCollectible)
+    public void UpdateCollectible(Interactable newInteractable)
     {
         currentCollectible = newCollectible;
     }
@@ -34,15 +34,8 @@ public class Player : MonoBehaviour
         //Null check
         if (currentDoor != null)
         {
-            currentDoor.OpenDoor();
-            currentDoor = null;
-        }
-
-        //Null check for currentCollectible
-        if(currentCollectible != null)
-        {
-            IncreaseScore(currentCollectible.myScore);
-            currentCollectible.Collected();
+            //Interact with the object
+            currentInteractable.Interact(this);
         }
     }
 }

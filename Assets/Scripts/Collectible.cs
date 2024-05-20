@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Collectible : Interactable
 {
     public int myScore = 5;
     bool fullInventory = false;
@@ -12,7 +12,14 @@ public class Collectible : MonoBehaviour
 
     public void Collected()
     {
+        Destroy(gameObject);
+    }
 
+    public override void Interact(Player newPlayer)
+    {
+        base.Interact(thePlayer);
+        thePlayer.IncreaseScore(myScore);
+        Collected();
     }
 
     private void OnTriggerEnter(Collider other)

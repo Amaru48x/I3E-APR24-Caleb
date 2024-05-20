@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Door : Interactable
 {
     bool opened = false;
 
@@ -25,6 +25,13 @@ public class Door : MonoBehaviour
             other.gameObject.GetComponent<Player>().UpdateDoor(null);
         }
     }
+
+    public override void Interact(Player thePlayer)
+    {
+        base.Interact(thePlayer);
+        OpenDoor();
+    }
+
     public void OpenDoor()
     {
         if (!locked)
